@@ -1,9 +1,26 @@
 import React, { useState } from "react";
 import './CreateUserStyle.scss'
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
 
 class CreateUser extends React.Component{
     
+    getDate = () => {
+        if(!this.state.startDate.getDate){
+            console.log("Data vuota");
+        }else{
+            console.log(this.state.startDate);
+        }
+    }
+
+    onChange = (key, value) =>{
+        this.setState({
+            [key] : value
+        })
+    }
+
+
     currentView = () => {
         return(
             <form>
@@ -20,7 +37,7 @@ class CreateUser extends React.Component{
                         </li>
                         <li>
                                 <label htmlFor="DOB">Date of Birth:</label>
-                                <input type="text" pattern="[0-9]*" name="dayOfBirth" id="dayOfBirth" required/>
+                                <input type="date" onChange={(event) => this.setState({startDate: event.target.value})}/>
                         </li>
                         <li>
                                 <label htmlFor="Username">Username:</label>
@@ -32,6 +49,8 @@ class CreateUser extends React.Component{
                         </li>
                     </ul>
                 </fieldset>
+                <button type="button" onClick={() => this.getDate()}>Submit</button>
+
             </form>
         )
     }
