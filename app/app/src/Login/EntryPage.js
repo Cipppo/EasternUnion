@@ -1,68 +1,65 @@
-import React from "react"
+import React, { useState } from "react"
 import './EntryPageStyle.scss'
 
-const { Component } = React
 
-class EntryPage extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      currentView: "logIn"
-    }
+async function loginUser(credentials) {
+
+  console.log(credentials);
+  return fetch('http://localhost:8080/login', {
+    method: 'POST', 
+    headers: {
+      'Content-Type': 'application/json'
+    }, 
+    body: credentials
+  })
+  .then(data => data.json())
+
+
+  
+}
+
+
+const EntryPage = ({setToken}) =>  {
+
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+
+  const actualView = 'logIn';
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const token = await loginUser({
+      username, 
+      password
+    });
+    setToken(token);
+    console.log(token);
   }
 
-  changeView = (view) => {
+  const changeView = (view) => {
     this.setState({
       currentView: view
     })
   }
 
-  pressLogin = () => {
+  const pressLogin = () => {
       console.log(this.input.value);
   }
 
-  currentView = () => {
-    switch(this.state.currentView) {
-      case "signUp":
-        return (
-          <form>
-            <h2>Sign Up!</h2>
-            <fieldset>
-              <legend>Create Account</legend>
-              <ul>
-                <li>
-                  <label htmlFor="username">Username:</label>
-                  <input type="text" id="username" required/>
-                </li>
-                <li>
-                  <label htmlFor="email">Email:</label>
-                  <input type="email" id="email" required/>
-                </li>
-                <li>
-                  <label htmlFor="password">Password:</label>
-                  <input type="password" id="password" required/>
-                </li>
-              </ul>
-            </fieldset>
-            <button>Submit</button>
-            <button type="button" onClick={ () => this.changeView("logIn")}>Have an Account?</button>
-          </form>
-        )
-        break
-      case "logIn":
-        return (
-          <form>
+  return (
+      <section id="entry-page">
+          <form onSubmit={handleSubmit}>
             <h2>Welcome Back!</h2>
             <fieldset>
               <legend>Log In</legend>
               <ul>
                 <li>
                   <label htmlFor="username">Username:</label>
-                  <input type="text" name="username" id="username"  ref={userinput => (this.input = userinput)}required/>
+                  <input type="text" name="username" id="username"  onChange={e => setUsername(e.target.value)} required/>
                 </li>
                 <li>
                   <label htmlFor="password">Password:</label>
-                  <input type="password" id="password" required/>
+                  <input type="password" id="password" onChange={e => setPassword(e.target.value)} required/>
                 </li>
                 <li>
                   <i/>
@@ -70,44 +67,12 @@ class EntryPage extends Component {
                 </li>
               </ul>
             </fieldset>
-            <button type="button" onClick={ () => this.pressLogin()}>Login</button>
+            <button type="submit">Login</button>
             <button type="button" onClick={ () => this.changeView("signUp")}>Create an Account</button>
           </form>
-        )
-        break
-      case "PWReset":
-        return (
-          <form>
-          <h2>Reset Password</h2>
-          <fieldset>
-            <legend>Password Reset</legend>
-            <ul>
-              <li>
-                <em>A reset link will be sent to your inbox!</em>
-              </li>
-              <li>
-                <label htmlFor="email">Email:</label>
-                <input type="email" id="email" required/>
-              </li>
-            </ul>
-          </fieldset>
-          <button>Send Reset Link</button>
-          <button type="button" onClick={ () => this.changeView("logIn")}>Go Back</button>
-        </form>
-        )
-      default:
-        break
-    }
-  }
-
-
-  render() {
-    return (
-      <section id="entry-page">
-        {this.currentView()}
       </section>
-    )
-  }
+  )
+
 }
 
 export default EntryPage

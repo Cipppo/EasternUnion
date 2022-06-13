@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+import {BrowserRouter, Route, Routes, Switch} from 'react-router-dom';
+import EntryPage from "./Login/EntryPage";
+import AdminRoot from "./AdminRoot/AdminRoot";
+import UserRoot from "./UserRoot/UserRoot";
 
 function App() {
+  const [token, setToken] = useState();
+
+  if ( !token){
+    return <EntryPage setToken = {setToken} />
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="diocane">
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<UserRoot user="root"/>}>
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

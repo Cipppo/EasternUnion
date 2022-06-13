@@ -9,12 +9,11 @@ import { BrowserRouter } from "react-router-dom"
 
 import AdminRoot from './AdminRoot/AdminRoot'
 import UserRoot from './UserRoot/UserRoot';
+import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <BrowserRouter >
-        <CreateUser />
-    </BrowserRouter>
+    <App />
 
 
 );
