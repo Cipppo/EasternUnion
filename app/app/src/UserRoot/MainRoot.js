@@ -9,13 +9,13 @@ import { BrowserRouter, Navigate, Route, Switch, useHistory} from 'react-router-
 
 const MainRoot = (props) => {
 
-    const user = props.user;
+    let user = props.user;
 
     if(user){
         return <UserRoot />;
-    }else{
-        return <RootRoot />;
     }
+    return <RootRoot />;
+
 
 
 }
@@ -24,4 +24,4 @@ const MainRoot = (props) => {
 
 
 
-export default UserRoot;
+export default MainRoot;
