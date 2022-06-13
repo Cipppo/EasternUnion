@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import './UserRootStyle.scss'
 
 
-const UserRoot = () => {
+
+const RootRoot = () => {
     return(
         <section id="user-root">
             <form>
-                <h2>Welcome back ! {user}</h2>
+                <h2>Welcome back ! </h2>
                 <button type="button">Send Money</button>
                 <button type="button">Receive Money</button>
                 <button type="button">See stats</button>
@@ -15,4 +16,4 @@ const UserRoot = () => {
     )
 }
 
-export default UserRoot;
+export default RootRoot;

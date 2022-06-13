@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {BrowserRouter, Route, Routes, Switch} from 'react-router-dom';
 import EntryPage from "./Login/EntryPage";
 import AdminRoot from "./AdminRoot/AdminRoot";
-import UserRoot from "./UserRoot/UserRoot";
+import UserRoot from "./UserRoot/MainRoot";
 
 function App() {
   const [token, setToken] = useState();
@@ -12,10 +12,10 @@ function App() {
   }
 
   return (
-    <div className="diocane">
+    <div >
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<UserRoot user="root"/>}>
+          <Route exact path="/" element={<UserRoot user = {true} />}>
           </Route>
         </Routes>
       </BrowserRouter>
