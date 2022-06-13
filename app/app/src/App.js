@@ -1,11 +1,16 @@
 import React, {useState} from "react";
 import {BrowserRouter, Route, Routes, Switch} from 'react-router-dom';
 import EntryPage from "./Login/EntryPage";
-import AdminRoot from "./AdminRoot/AdminRoot";
-import UserRoot from "./UserRoot/MainRoot";
+import MainRoot from "./UserRoot/MainRoot";
+import CreateUser from "./AdminCreateUser/CreateUser";
+import useToken from "./token/useToken";
+
+
+
 
 function App() {
-  const [token, setToken] = useState();
+
+  const {token, setToken}  = useToken();
 
   if ( !token){
     return <EntryPage setToken = {setToken} />
@@ -15,8 +20,8 @@ function App() {
     <div >
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<UserRoot user = {true} />}>
-          </Route>
+          <Route exact path="/" element={<MainRoot user = {false} />}/>
+          <Route path="/CreateUser" element={<CreateUser />}/>
         </Routes>
       </BrowserRouter>
     </div>
