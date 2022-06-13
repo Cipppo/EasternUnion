@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Navigate } from "react-router-dom";
 import './EntryPageStyle.scss'
 
 
@@ -68,7 +69,7 @@ const EntryPage = ({setToken}) =>  {
               </ul>
             </fieldset>
             <button type="submit">Login</button>
-            <button type="button" onClick={ () => this.changeView("signUp")}>Create an Account</button>
+            <button type="button" >Create an Account</button>
           </form>
       </section>
   )
