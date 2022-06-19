@@ -20,6 +20,7 @@ const CreateUser = () => {
         })
     }
 
+    let navigate = useNavigate();
 
 
     return(
@@ -51,6 +52,7 @@ const CreateUser = () => {
                 </ul>
             </fieldset>
             <button type="button" onClick={() => this.getDate()}>Submit</button>
+            <button type="button" onClick={() => navigate("/")}>Go Back</button>
 
         </form>
         </section>
