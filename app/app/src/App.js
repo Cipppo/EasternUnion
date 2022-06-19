@@ -20,7 +20,7 @@ function App() {
     <div >
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<MainRoot user = {false} />}/>
+          <Route exact path="/" element={<MainRoot user = {true} />}/>
           <Route path="/CreateUser" element={<CreateUser />}/>
         </Routes>
       </BrowserRouter>

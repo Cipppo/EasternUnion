@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import EntryPage from './Login/EntryPage';
 import CreateUser from './AdminCreateUser/CreateUser'
+import SendMoney from './SendMoney/SendMoney'
 import './index.css';
 
 
@@ -13,7 +14,7 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <App />
+    <SendMoney />
 
 
 );
