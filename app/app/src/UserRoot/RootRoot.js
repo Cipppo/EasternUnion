@@ -14,8 +14,8 @@ const RootRoot = () => {
             <form>
                 <h2>Welcome back, Root! </h2>
                 <button type="button" onClick={() => navigate("/CreateUser")}>Create new Customer</button>
-                <button type="button">Receive Money</button>
-                <button type="button">See stats</button>
+                <button type="button">See analytics</button>
+                <button type="button">Change current week</button>
             </form>       
         </section>
     )
